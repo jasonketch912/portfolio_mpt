@@ -365,12 +365,12 @@ with col1:
     alloc_df["Weight"] = alloc_df["Weight"].round(4)
 
     st.write("**Allocation**")
-    st.dataframe(alloc_df.sort_values("Weight", ascending=False), use_container_width=True)
+    st.dataframe(alloc_df.sort_values("Weight", ascending=False), width='stretch')
 
     fig_alloc = go.Figure()
     fig_alloc.add_bar(x=alloc_df["Ticker"], y=alloc_df["Weight"], name="Weights")
     fig_alloc.update_layout(height=300, margin=dict(l=10, r=10, t=10, b=10))
-    st.plotly_chart(fig_alloc, use_container_width=True)
+    st.plotly_chart(fig_alloc, width='stretch')
 
     st.subheader("Reference (risky-only)")
     st.write(f"**Tangency Return:** {tan_ret*100:.2f}%")
@@ -394,7 +394,7 @@ with col2:
     for t in tickers:
         fig_prices.add_trace(go.Scatter(x=prices.index, y=prices[t], mode="lines", name=t))
     fig_prices.update_layout(height=300, margin=dict(l=10, r=10, t=10, b=10))
-    st.plotly_chart(fig_prices, use_container_width=True)
+    st.plotly_chart(fig_prices, width='stretch')
 
     st.subheader("Frontier (risky-only) + CML (if enabled)")
     fig_front = go.Figure()
@@ -423,7 +423,7 @@ with col2:
         height=380,
         margin=dict(l=10, r=10, t=10, b=10),
     )
-    st.plotly_chart(fig_front, use_container_width=True)
+    st.plotly_chart(fig_front, width='stretch')
 
 # -------------------------
 # Backtest section
@@ -442,10 +442,10 @@ else:
         height=420,
         margin=dict(l=10, r=10, t=10, b=10),
     )
-    st.plotly_chart(fig_bt, use_container_width=True)
+    st.plotly_chart(fig_bt, width='stretch')
 
     st.write("**Performance stats** (en % sauf Sharpe & Final Value)")
-    st.dataframe(metrics_view, use_container_width=True)
+    st.dataframe(metrics_view, width='stretch')
 
 # -------------------------
 # Export section
